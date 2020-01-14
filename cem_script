@@ -1,0 +1,140 @@
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+/**
+ * @author girish.kumar
+ *
+ */
+public class CEM2  {
+	
+	public static WebDriver driver;
+
+	/**
+	 * @param args
+	 * @throws InterruptedException
+	 */
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriverManager.chromedriver().setup();
+		ChromeOptions options = new ChromeOptions();
+		options.addArguments("start-maximized");
+		
+		driver = new ChromeDriver(options);
+		//JavascriptExecutor jse = (JavascriptExecutor)driver;
+		//driver.manage().window().maximize();
+		
+			driver.get("https://ttsm-002-demo.traxtech.com/cem/api/");
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//div[contains(text(),'COMPOSE')]")));
+			//drv.findElement(By.xpath("//div[contains(text(),'COMPOSE')]")).click();
+	WebDriverWait wait = new WebDriverWait(driver, 20);
+		id("client_code").sendKeys("accu");
+		id("username_ui").sendKeys("girish.kumar");
+		id("password").sendKeys("Welcome@123");
+		xpath("//button[@class='btn btn-primary btn-login']").click();
+		Thread.sleep(6000);
+		Select Client=new Select(driver.findElement(By.xpath("//select[@data-placeholder='Select a client']")));
+		Client.selectByVisibleText("GEMO - General Motors");
+		Thread.sleep(5000);
+		Select Carrier = new Select(driver.findElement(By.xpath("//select[@ng-model='params.carrierCode']")));
+		Carrier.selectByVisibleText("All Carriers");
+		Thread.sleep(2000);
+		Select daterange=new Select(driver.findElement(By.xpath("//select[@ng-model='params.invDate.rangeType']")));
+		daterange.selectByVisibleText("All");
+		Thread.sleep(3000);
+		
+		xpath("//textarea[@ng-model='params.fields[0].value']").sendKeys("5301348478");
+		xpath("//button[@class='btn btn-primary btn-lg']").click();
+		Thread.sleep(3000);
+		driver.findElement(By.linkText("OPEN")).click();
+		//xpath("//div[@id='s2id_autogen1']").click();
+//		WebDriverWait wait1 = new WebDriverWait(driver, 120);
+//		xpath("//ul[@class='select2-results']/li[6]").click();// select client
+//		Thread.sleep(6000);
+//		xpath("//div[@id='s2id_autogen9']").click();
+//		xpath("//div[@id='select2-drop']//li[1]").click();
+//		//css("[input[class='select2-input']]").click();
+//		//xpath("//div[@id='select2-drop']").click();// new one
+//		xpath("//div[@class='webix_inp_static']").click();
+//		xpath("//div[@id='s2id_autogen3']").click();
+		
+//		WebElement dropdown = driver.findElement(By.id("select2-drop"));
+//		WebElement UlElementList = dropdown.findElement(By.tagName("ul"));
+//		List<WebElement> liElementsList = UlElementList.findElements(By.tagName("li"));
+//		//System.out.println("List size : " + liElementsList.size());	
+//		WebElement liElement;
+//		for (int i = 0; i < liElementsList.size(); i++) {
+//			liElement = liElementsList.get(i).findElement(By.className("select2-result-label"));
+//			if(liElement.getText().equalsIgnoreCase("GAP2 - GAP PARCEL")) {
+//				liElementsList.get(i).findElement(By.className("select2-result-label")).click();
+//			}
+//		}
+//		Thread.sleep(3000);
+//		//xpath("//div[@class='form-group']//label[text()='Invoice Status']/../div").click();
+//
+//		WebElement invStatus =driver.findElement(By.id("select2-drop"));
+//	
+//	WebElement ElementList = invStatus.findElement(By.tagName("ul"));
+//	List <WebElement> liElementlist = ElementList.findElements(By.tagName("li"));
+//	WebElement liElement1;
+//	for(int i1=0; i1< liElementlist.size();i1++)	{
+//		liElement1 = liElementlist.get(i1).findElement(By.className("select2-result-label"));
+//		if(liElement1.getText().equalsIgnoreCase("All")) {
+//			liElementlist.get(i1).findElement(By.className("select2-result-label")).click();
+//	}
+//		
+//		Thread.sleep(3000);
+//		xpath("//textarea[@ng-model='params.fields[0].value']").sendKeys("0000003Y5961509");
+//		Thread.sleep(3000);
+//		xpath("//a[contains(text(),'Account Number')]").click();
+//		xpath("//a[contains(text(),'Inv Amount')]").click();
+//		xpath("//button[@class='btn btn-primary btn-lg']").click();
+//		Thread.sleep(5000);
+//		//xpath("//div[@class='webix_cell webix_cell_select']//a[@class='cell'][contains(text(),'OPEN')]")
+//		xpath("//div//a[@class='cell'][contains(text(),'OPEN')]").click();
+//		Thread.sleep(10000);
+//		xpath("//label[@class='btn btn-default active']").click(); //selection of Shipment
+//		Thread.sleep(9000);
+//		xpath("//div[@id='codingSection']/button[2]").click();
+//		Thread.sleep(15000);
+//		xpath("//div[@id='codingSection']/").clear();
+//		Thread.sleep(2000);
+//		xpath("//i[@class='la la-comments']").click();
+	}
+		
+	
+	
+		
+		
+		
+	
+	
+	
+
+	
+
+	public static WebElement id(String path) {
+		return driver.findElement(By.id(path));
+	}
+
+	public static WebElement xpath(String path) {
+		return driver.findElement(By.xpath(path));
+	}
+
+	public static WebElement name(String path) {
+		return driver.findElement(By.name(path));
+	}
+
+	public static WebElement css(String path) {
+		return driver.findElement(By.cssSelector(path));
+	}
+
+}

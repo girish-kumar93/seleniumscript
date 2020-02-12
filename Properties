@@ -1,0 +1,5 @@
+Properties prop = new Properties();
+		FileInputStream fis = new FileInputStream("C:\\Users\\girish.kumar\\eclipse-workspace\\Practise_Cases\\src\\test\\java\\Keys.properties");
+		prop.load(fis);
+		String Username = prop.getProperty("userName");
+		String Password = prop.getProperty("password");
